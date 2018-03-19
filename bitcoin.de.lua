@@ -1,10 +1,10 @@
 -- Inofficial bitcoin.de Extension (https://www.bitcoin.de) for MoneyMoney
 -- Fetches balances from bitcoin.de and returns them as securities
--- 
+--
 -- Username: bitcoin.de API-Key
 -- Password: bitcoin.de API-Secret
--- 
--- Ensure to create a new bitcoin.de API-Key for MoneyMoney and 
+--
+-- Ensure to create a new bitcoin.de API-Key for MoneyMoney and
 -- enable "showAccountInfo" and "showRates"
 --
 -- MIT License
@@ -75,10 +75,10 @@ function InitializeSession(protocol, bankCode, username, username2, password, us
   apiSecret = password
 
   balances = queryBalances()
-  if balances == nil then 
-    return LoginFailed 
+  if balances == nil then
+    return LoginFailed
   end
-  
+
   queryRates(balances)
 end
 
@@ -123,7 +123,7 @@ end
 -- bitcoin.de API Implementation --
 
 function queryBalances()
-  local json = query("account", nil)  
+  local json = query("account", nil)
   return json:dictionary()["data"]["balances"]
 end
 
@@ -172,7 +172,7 @@ function query(method, params)
   return json
 end
 
-function nextApiNonce() 
+function nextApiNonce()
   nonce = nonce + 1
   return string.format("%d", nonce)
 end
@@ -190,3 +190,4 @@ function signature(nonce, method, uri)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
 
+-- SIGNATURE: MC0CFQCZXs15aIIgPoD5+TK0CBfC3Yk2PQIUJ99DpF+umsiUnuYH/f3bSEYfaYI=
