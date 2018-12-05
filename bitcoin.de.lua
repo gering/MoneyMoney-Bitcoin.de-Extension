@@ -30,7 +30,7 @@
 -- SOFTWARE.
 
 WebBanking {
-  version = 1.0,
+  version = 1.1,
   country = "de",
   description = string.format(MM.localizeText("Fetch balances from %s and list them as securities"), "bitcoin.de"),
   services = { "bitcoin.de" },
@@ -49,18 +49,19 @@ local apiBase = "https://api.bitcoin.de/v2/"
 local market = "bitcoin.de"
 local currency = "EUR"
 local currencyNames = {
-  LTC = "Litecoin",
-  ETH = "Ether",
-  IOT = "IOTA",
-  XRP = "Ripple",
   BTC = "Bitcoin",
   BCH = "Bitcoin Cash",
+  BTG = "Bitcoin Gold",
+  BSV = "Bitcoin SV",
+  LTC = "Litecoin",
+  ETH = "Ethereum",
+  IOT = "IOTA",
+  XRP = "Ripple",
   ZEC = "ZCash",
   ETC = "Ethereum Classic",
   XMR = "Monero",
   DSH = "Dash",
-  NEO = "Neo",
-  BTG = "Bitcoin Gold",
+  NEO = "Neo"
 }
 
 -- Extension Interface Implementaion
@@ -189,5 +190,3 @@ function signature(nonce, method, uri)
   print("hmac = " .. hmacData)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
-
--- SIGNATURE: MC0CFQCZXs15aIIgPoD5+TK0CBfC3Yk2PQIUJ99DpF+umsiUnuYH/f3bSEYfaYI=
