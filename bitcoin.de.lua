@@ -190,3 +190,5 @@ function signature(nonce, method, uri)
   print("hmac = " .. hmacData)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
+
+-- SIGNATURE: MC0CFGbyaCMWCorA2PXbY41sNmlO8OXUAhUAg7QQZRkSCY6zMCOAepSLP4D/pDM=
