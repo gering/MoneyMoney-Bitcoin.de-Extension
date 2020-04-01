@@ -39,7 +39,7 @@ WebBanking {
 -- State
 local apiKey
 local apiSecret
-local nonce = MM.time() * 10
+local nonce = MM.time() * 100
 local balances
 local credits = 10
 local rates = {}
