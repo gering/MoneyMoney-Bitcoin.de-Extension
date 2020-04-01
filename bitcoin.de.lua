@@ -30,7 +30,7 @@
 -- SOFTWARE.
 
 WebBanking {
-  version = 1.1,
+  version = 1.2,
   country = "de",
   description = string.format(MM.localizeText("Fetch balances from %s and list them as securities"), "bitcoin.de"),
   services = { "bitcoin.de" },
