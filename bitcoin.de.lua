@@ -61,7 +61,8 @@ local currencyNames = {
   ETC = "Ethereum Classic",
   XMR = "Monero",
   DSH = "Dash",
-  NEO = "Neo"
+  NEO = "Neo",
+  GNT = "Golem"
 }
 
 -- Extension Interface Implementaion
