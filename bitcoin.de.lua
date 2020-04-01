@@ -190,6 +190,5 @@ end
 function signature(nonce, method, uri)
   local md5 = "d41d8cd98f00b204e9800998ecf8427e"
   local hmacData = method .. '#' .. uri .. '#' .. apiKey .. '#' .. nonce .. '#' .. md5
-  print("hmac = " .. hmacData)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
