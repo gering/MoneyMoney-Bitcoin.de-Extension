@@ -43,6 +43,7 @@ local nonce = MM.time() * 10
 local balances
 local credits = 10
 local rates = {}
+local connection = Connection()
 
 -- Api Constants
 local apiBase = "https://api.bitcoin.de/v2/"
@@ -75,6 +76,8 @@ function InitializeSession(protocol, bankCode, username, username2, password, us
   MM.printStatus("Login (API-Key & API-Secret)")
   apiKey = username
   apiSecret = password
+
+  connection.language = "de-de"
 
   balances = queryBalances()
   if balances == nil then
@@ -165,7 +168,6 @@ function query(method, params)
   headers["X-API-NONCE"] = nonce
   headers["X-API-SIGNATURE"] = signature
 
-  local connection = Connection()
   local content = connection:request("GET", url, nil, nil, headers)
   local json = JSON(content)
 
