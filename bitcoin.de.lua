@@ -46,7 +46,7 @@ local rates = {}
 local connection = Connection()
 
 -- Api Constants
-local apiBase = "https://api.bitcoin.de/v2/"
+local apiBase = "https://api.bitcoin.de/v4/"
 local market = "bitcoin.de"
 local currency = "EUR"
 local currencyNames = {
@@ -141,25 +141,16 @@ end
 
 function queryRate(pair)
   print("query rate: " .. pair)
-  local params = {}
-  params["trading_pair"] = pair
-  local json = query("rates", params)
+  local json = query(pair .. "/rates")
   return tonumber(json:dictionary()["rates"]["rate_weighted"])
 end
 
-function query(method, params)
+function query(method)
   if credits < 4 then
     MM.sleep(4 - credits)
   end
 
   local url = apiBase .. method
-  if params ~= nil then
-    url = url .. "?"
-    for index, value in pairs(params) do
-      url = url .. index .. "=" .. value
-    end
-  end
-
   local nonce = nextApiNonce()
   local signature = signature(nonce, "GET", url)
 
