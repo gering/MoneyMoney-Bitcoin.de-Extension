@@ -63,7 +63,8 @@ local currencyNames = {
   XMR = "Monero",
   DSH = "Dash",
   NEO = "Neo",
-  GNT = "Golem"
+  GNT = "Golem",
+  XRP = "Ripple"
 }
 
 -- Extension Interface Implementaion
