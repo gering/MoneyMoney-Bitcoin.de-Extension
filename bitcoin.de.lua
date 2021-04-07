@@ -155,6 +155,7 @@ function query(method)
   local signature = signature(nonce, "GET", url)
 
   local headers = {}
+  headers["Accept"] = "application/json"
   headers["X-API-KEY"] = apiKey
   headers["X-API-NONCE"] = nonce
   headers["X-API-SIGNATURE"] = signature
