@@ -30,7 +30,7 @@
 -- SOFTWARE.
 
 WebBanking {
-  version = 1.1,
+  version = 1.2,
   country = "de",
   description = string.format(MM.localizeText("Fetch balances from %s and list them as securities"), "bitcoin.de"),
   services = { "bitcoin.de" },
@@ -39,13 +39,14 @@ WebBanking {
 -- State
 local apiKey
 local apiSecret
-local nonce = MM.time() * 10
+local nonce = MM.time() * 100
 local balances
 local credits = 10
 local rates = {}
+local connection = Connection()
 
 -- Api Constants
-local apiBase = "https://api.bitcoin.de/v2/"
+local apiBase = "https://api.bitcoin.de/v4/"
 local market = "bitcoin.de"
 local currency = "EUR"
 local currencyNames = {
@@ -61,7 +62,9 @@ local currencyNames = {
   ETC = "Ethereum Classic",
   XMR = "Monero",
   DSH = "Dash",
-  NEO = "Neo"
+  NEO = "Neo",
+  GNT = "Golem",
+  XRP = "Ripple"
 }
 
 -- Extension Interface Implementaion
@@ -74,6 +77,8 @@ function InitializeSession(protocol, bankCode, username, username2, password, us
   MM.printStatus("Login (API-Key & API-Secret)")
   apiKey = username
   apiSecret = password
+
+  connection.language = "de-de"
 
   balances = queryBalances()
   if balances == nil then
@@ -137,34 +142,25 @@ end
 
 function queryRate(pair)
   print("query rate: " .. pair)
-  local params = {}
-  params["trading_pair"] = pair
-  local json = query("rates", params)
+  local json = query(pair .. "/rates")
   return tonumber(json:dictionary()["rates"]["rate_weighted"])
 end
 
-function query(method, params)
+function query(method)
   if credits < 4 then
     MM.sleep(4 - credits)
   end
 
   local url = apiBase .. method
-  if params ~= nil then
-    url = url .. "?"
-    for index, value in pairs(params) do
-      url = url .. index .. "=" .. value
-    end
-  end
-
   local nonce = nextApiNonce()
   local signature = signature(nonce, "GET", url)
 
   local headers = {}
+  headers["Accept"] = "application/json"
   headers["X-API-KEY"] = apiKey
   headers["X-API-NONCE"] = nonce
   headers["X-API-SIGNATURE"] = signature
 
-  local connection = Connection()
   local content = connection:request("GET", url, nil, nil, headers)
   local json = JSON(content)
 
@@ -187,8 +183,5 @@ end
 function signature(nonce, method, uri)
   local md5 = "d41d8cd98f00b204e9800998ecf8427e"
   local hmacData = method .. '#' .. uri .. '#' .. apiKey .. '#' .. nonce .. '#' .. md5
-  print("hmac = " .. hmacData)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
-
--- SIGNATURE: MC0CFGbyaCMWCorA2PXbY41sNmlO8OXUAhUAg7QQZRkSCY6zMCOAepSLP4D/pDM=
