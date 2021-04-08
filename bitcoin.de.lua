@@ -184,3 +184,5 @@ function signature(nonce, method, uri)
   local hmacData = method .. '#' .. uri .. '#' .. apiKey .. '#' .. nonce .. '#' .. md5
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
+
+-- SIGNATURE: MC4CFQCY2aqq3OIMGLqP1jcSUxucvnEdEAIVAJs5gV3Trzy+DhAi9DlkzpfqA2Lx
