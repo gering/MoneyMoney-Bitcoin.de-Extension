@@ -54,6 +54,7 @@ local currencyNames = {
   BCH = "Bitcoin Cash",
   BTG = "Bitcoin Gold",
   BSV = "Bitcoin SV",
+  DOGE = "Dogecoin",
   LTC = "Litecoin",
   ETH = "Ethereum",
   IOT = "IOTA",
