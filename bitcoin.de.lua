@@ -30,7 +30,7 @@
 -- SOFTWARE.
 
 WebBanking {
-  version = 1.2,
+  version = 1.21,
   country = "de",
   description = string.format(MM.localizeText("Fetch balances from %s and list them as securities"), "bitcoin.de"),
   services = { "bitcoin.de" },
@@ -186,4 +186,4 @@ function signature(nonce, method, uri)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
 
--- SIGNATURE: MC4CFQCY2aqq3OIMGLqP1jcSUxucvnEdEAIVAJs5gV3Trzy+DhAi9DlkzpfqA2Lx
+-- SIGNATURE: MCwCFHhej0KXNikvTogatQanmY0wv2ASAhR04Q2EAEMTqzpRxcXYSfUlk4UEEQ==
