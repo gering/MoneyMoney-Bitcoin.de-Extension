@@ -64,7 +64,8 @@ local currencyNames = {
   XMR = "Monero",
   DSH = "Dash",
   NEO = "Neo",
-  GNT = "Golem"
+  GNT = "Golem",
+  USDT = "Tether"
 }
 
 -- Extension Interface Implementaion
@@ -185,5 +186,3 @@ function signature(nonce, method, uri)
   local hmacData = method .. '#' .. uri .. '#' .. apiKey .. '#' .. nonce .. '#' .. md5
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
-
--- SIGNATURE: MCwCFHhej0KXNikvTogatQanmY0wv2ASAhR04Q2EAEMTqzpRxcXYSfUlk4UEEQ==
