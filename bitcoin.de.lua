@@ -30,7 +30,7 @@
 -- SOFTWARE.
 
 WebBanking {
-  version = 1.21,
+  version = 1.22,
   country = "de",
   description = string.format(MM.localizeText("Fetch balances from %s and list them as securities"), "bitcoin.de"),
   services = { "bitcoin.de" },
@@ -64,7 +64,8 @@ local currencyNames = {
   XMR = "Monero",
   DSH = "Dash",
   NEO = "Neo",
-  GNT = "Golem"
+  GNT = "Golem",
+  USDT = "Tether"
 }
 
 -- Extension Interface Implementaion
@@ -186,4 +187,4 @@ function signature(nonce, method, uri)
   return bin2hex(MM.hmac256(apiSecret, hmacData))
 end
 
--- SIGNATURE: MCwCFHhej0KXNikvTogatQanmY0wv2ASAhR04Q2EAEMTqzpRxcXYSfUlk4UEEQ==
+-- SIGNATURE: MCwCFCZuuc8OIRGe/rsXm3hNpTI7oxNlAhRzb6nxCJCshkt8HOIMeLYoe+ncyw==
