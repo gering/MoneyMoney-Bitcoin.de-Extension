@@ -65,7 +65,8 @@ local currencyNames = {
   DSH = "Dash",
   NEO = "Neo",
   GNT = "Golem",
-  USDT = "Tether"
+  USDT = "Tether",
+  SOL = "Solana"
 }
 
 -- Extension Interface Implementaion
